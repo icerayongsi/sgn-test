@@ -1,3 +1,4 @@
+import MainChart from './components/chart';
 import styles from './page.module.css';
 
 export default function Index() {
@@ -12,6 +13,8 @@ export default function Index() {
               Welcome front 👋
             </h1>
           </div>
+
+          <MainChart />
 
           <div id="hero" className="rounded">
             <div className="text-container">
