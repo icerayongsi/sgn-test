@@ -1,13 +1,18 @@
-
-import express from 'express';
-import * as path from 'path';
+import express, { Request, Response } from 'express';
+import fs from 'fs';
+import path from 'path';
+import cors from "cors";
 
 const app = express();
+app.use(cors({ origin : "*"}));
 
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
-
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to server!' });
+app.get('/population-and-demography-data', (req: Request, res: Response) => {
+  const csvFilePath = path.join(__dirname, '/assets/population-and-demography.csv');
+  fs.access(csvFilePath, fs.constants.F_OK, () => {
+    res.setHeader('Content-Type', 'text/plain');
+    const readStream = fs.createReadStream(csvFilePath);
+    readStream.pipe(res);
+  });
 });
 
 const port = process.env.PORT || 3333;
