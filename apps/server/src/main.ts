@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
 import cors from "cors";
+import countryData from './countryData';
 
 const app = express();
 app.use(cors({ origin : "*"}));
@@ -14,6 +15,10 @@ app.get('/population-and-demography-data', (req: Request, res: Response) => {
     readStream.pipe(res);
   });
 });
+
+app.get('/countryInfo', (req: Request, res: Response) => {
+  res.json(countryData);
+})
 
 const port = process.env.PORT || 3333;
 const server = app.listen(port, () => {
