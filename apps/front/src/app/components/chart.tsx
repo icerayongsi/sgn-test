@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import _ from 'lodash';
 import Legend, { regions } from './legend';
@@ -71,12 +71,13 @@ const MainChart: React.FC = () => {
   const intervalTime = 300;
   const width = 800;
   const height = 500;
+  
   const svgRef = useRef<SVGSVGElement | null>(null);
   let countryInfo: FilteredCountry[];
 
   async function fetchCountryInfo() {
     try {
-      const { data } = await axios.get('http://localhost:3333/countryInfo');
+      const { data } = await axios.get(`${process.env.API_URL}/countryInfo`);
       const result: FilteredCountry[] = [];
       data.map((country: Country) => {
         result.push({
@@ -96,7 +97,7 @@ const MainChart: React.FC = () => {
     const fetchData = async () => {
       await fetchCountryInfo();
       const data = await d3.csv(
-        'http://localhost:3333/population-and-demography-data',
+        `${process.env.API_URL}/population-and-demography-data`,
         (d: d3.DSVRowString<string>) => {
           const region =
             countryInfo.find(
@@ -365,7 +366,7 @@ const MainChart: React.FC = () => {
 
   return (
     <div>
-      <div id="nx-cloud" className="grid justify-items-stretch rounded shadow">
+      <div id="block-main" className="grid justify-items-stretch rounded shadow">
         <Legend />
         <svg ref={svgRef} className="justify-self-center"></svg>
       </div>

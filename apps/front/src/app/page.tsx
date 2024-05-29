@@ -19,11 +19,10 @@ export default function Index() {
           <div className="grid gap-4 grid-cols-3">
             <div className="col-span-2">
               <a
-                id="nx-repo"
+                id="block-repo"
                 className="button-pill rounded shadow"
                 href="https://github.com/icerayongsi/sgn-test"
                 target="_blank"
-                rel="noreferrer"
               >
                 <svg
                   fill="currentColor"

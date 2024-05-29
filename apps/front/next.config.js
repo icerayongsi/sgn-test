@@ -12,6 +12,9 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  env: {
+    API_URL: "http://localhost:3333"
+  }
 };
 
 const plugins = [
