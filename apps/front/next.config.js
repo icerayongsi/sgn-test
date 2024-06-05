@@ -13,7 +13,7 @@ const nextConfig = {
     svgr: false,
   },
   env: {
-    API_URL: "http://localhost:3333"
+    API_URL: "http://sgntest.ddns.net:3333"
   }
 };
 
